@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import index, to_shp
+from core.views import index, to_shp, to_geojson
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('toshp', to_shp, name="toshp"),
-    # path('togeojson', to_geojson, name="togeojson"),
+    path('togeojson', to_geojson, name="togeojson"),
 ]

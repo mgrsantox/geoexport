@@ -107,5 +107,11 @@ def to_shp(request):
 #     return HttpResponse(k)
 
 
-# def to_geojson(request):
-#     pass
+def to_geojson(request):
+    data = Municipal.objects.filter(first_gapa="Tikapur")
+    gd = serialize('geojson', data, geometry_field='geom',
+                   fields=('first_dist', 'first_gapa'))
+
+    response = HttpResponse(gd, content_type='application/json')
+    response['Content-Disposition'] = 'attachment; filename="result.json"'
+    return response
